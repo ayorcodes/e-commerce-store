@@ -7,10 +7,13 @@ export class ProductsContextProvider extends React.Component {
   state = {
     products: [],
   };
+
   componentDidMount() {
     const prevProducts = this.state.products;
+
     db.collection("Products").onSnapshot((snapshot) => {
       let changes = snapshot.docChanges();
+
       changes.forEach((change) => {
         if (change.type === "added") {
           prevProducts.push({

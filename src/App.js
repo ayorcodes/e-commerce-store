@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import AddProducts from "./components/AddProducts";
 import { ProductsContextProvider } from "./global/ProductsContext";
-import { auth, db } from "./config/config";
+import { auth, db } from "./config/firebase.config";
 
 import Home from "./components/Home";
 import Signup from "./components/Signup";

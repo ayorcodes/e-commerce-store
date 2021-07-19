@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { storage, db } from "../config/config";
+import React, { useState } from 'react';
+import { storage, db } from '../config/firebase.config';
 const AddProducts = () => {
-  const [productName, setProductName] = useState("");
+  const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState(0);
   const [productImg, setProductImg] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
-  const types = ["image/png", "image/jpeg"]; // image types
+  const types = ['image/png', 'image/jpeg']; // image types
 
   const productImgHandler = (e) => {
     let selectedFile = e.target.files[0];
     if (selectedFile && types.includes(selectedFile.type)) {
       setProductImg(selectedFile);
-      setError("");
+      setError('');
     } else {
       setProductImg(null);
-      setError("Please select a valid image type (jpg or png)");
+      setError('Please select a valid image type (jpg or png)');
     }
   };
 
@@ -26,7 +26,7 @@ const AddProducts = () => {
       .ref(`product-images/${productImg.name}`)
       .put(productImg);
     uploadTask.on(
-      "state_changed",
+      'state_changed',
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -35,22 +35,22 @@ const AddProducts = () => {
       (err) => setError(err.message),
       () => {
         storage
-          .ref("product-images")
+          .ref('product-images')
           .child(productImg.name)
           .getDownloadURL()
           .then((url) => {
-            db.collection("Products")
+            db.collection('Products')
               .add({
                 ProductName: productName,
                 ProductPrice: Number(productPrice),
                 ProductImg: url,
               })
               .then(() => {
-                setProductName("");
+                setProductName('');
                 setProductPrice(0);
-                setProductImg("");
-                setError("");
-                document.getElementById("file").value = "";
+                setProductImg('');
+                setError('');
+                document.getElementById('file').value = '';
               })
               .catch((err) => setError(err.message));
           });

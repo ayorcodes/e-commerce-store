@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { auth } from "../config/config";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { auth } from '../config/firebase.config';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const login = (e) => {
     e.preventDefault();
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        setEmail("");
-        setPassword("");
-        setError("");
-        props.history.push("/");
+        setEmail('');
+        setPassword('');
+        setError('');
+        props.history.push('/');
       })
       .catch((err) => setError(err.message));
   };

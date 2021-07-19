@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import logo from "../images/logo.svg";
-import { Link } from "react-router-dom";
-import { auth } from "../config/config";
-import { Icon } from "react-icons-kit";
-import { cart } from "react-icons-kit/entypo/cart";
-import { useHistory } from "react-router-dom";
+import React, { useContext } from 'react';
+import logo from '../images/logo.svg';
+import { Link } from 'react-router-dom';
+import { auth } from '../config/firebase.config';
+import { Icon } from 'react-icons-kit';
+import { cart } from 'react-icons-kit/entypo/cart';
+import { useHistory } from 'react-router-dom';
 // import { CartContext } from "../global/CartContext";
 
 const Navbar = ({ user }) => {
@@ -14,7 +14,7 @@ const Navbar = ({ user }) => {
   // handle logout
   const handleLogout = () => {
     auth.signOut().then(() => {
-      history.push("/login");
+      history.push('/login');
     });
   };
 

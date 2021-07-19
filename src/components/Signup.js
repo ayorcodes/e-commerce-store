@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { auth, db } from "../config/config";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { auth, db } from '../config/firebase.config';
+import { Link } from 'react-router-dom';
 
 const Signup = (props) => {
   // defining state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   // signup
   const signup = (e) => {
@@ -15,7 +15,7 @@ const Signup = (props) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((cred) => {
-        db.collection("SignedUpUsersData")
+        db.collection('SignedUpUsersData')
           .doc(cred.user.uid)
           .set({
             Name: name,
@@ -23,11 +23,11 @@ const Signup = (props) => {
             Password: password,
           })
           .then(() => {
-            setName("");
-            setEmail("");
-            setPassword("");
-            setError("");
-            props.history.push("/login");
+            setName('');
+            setEmail('');
+            setPassword('');
+            setError('');
+            props.history.push('/login');
           })
           .catch((err) => setError(err.message));
       })

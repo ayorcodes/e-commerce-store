@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { db } from "../config/config";
+import { db } from "../config/firebase.config";
 
 export const ProductsContext = createContext();
 

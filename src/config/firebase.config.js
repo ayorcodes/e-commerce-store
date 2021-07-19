@@ -4,8 +4,6 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import { AppConstants } from '.';
 
-console.log(AppConstants.FIREBASE_API_KEY);
-
 var firebaseConfig = {
   apiKey: AppConstants.FIREBASE_API_KEY,
   authDomain: AppConstants.FIREBASE_AUTH_DOMAIN,
